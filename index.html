@@ -47,9 +47,11 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--ink);outline-offset
 .v-head{position:sticky;top:64px;align-self:start}
 .v-head h2{font-size:clamp(20px,2vw,26px);line-height:1.1;letter-spacing:-.04em;color:var(--g);margin-bottom:8px}
 .v-head strong{display:block;margin-bottom:4px}
-.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(120px,13vw,180px),1fr));gap:clamp(20px,3vw,44px) clamp(14px,2vw,28px)}
-.th img{width:100%;aspect-ratio:1;object-fit:cover}
+.thumbs{--h:clamp(150px,14vw,210px);display:flex;flex-wrap:wrap;align-items:flex-start;gap:clamp(24px,3vw,44px) clamp(14px,2vw,28px)}
+.th{flex:none;max-width:100%;width:calc(var(--h)*var(--r))}
+.th img{display:block;width:100%;height:auto;aspect-ratio:var(--r);object-fit:cover}
 .th span{display:block;margin-top:8px;line-height:1.4}
+@media (max-width:520px){.thumbs{--h:150px}}
 .th small{display:block;color:var(--soft);font-size:11.5px}
 .lst{text-align:center;padding:clamp(24px,4vw,56px) 0 clamp(64px,8vw,120px)}
 .lst h2{font-size:12px;font-weight:300;color:var(--soft);padding:26px 0 8px;letter-spacing:.04em}
@@ -264,6 +266,7 @@ const W=[
   [['과제','한옥과 목조건축, 지속가능한 재료를 다룬 2024 기획전의 그래픽.'],['역할','키비주얼·포스터, 카드뉴스, 전시장 패널·캡션 디자인.'],['과정','한옥의 외형에서 형태를 가져오고, 현재의 사진과 과거의 스케치를 반씩 섞음.'],['결과','2024. 4. 19. – 5. 29. 갤러리3·비움홀에서 전시.']],
   [['future-01','포스터'],['future-02','전시장 전경']])
 ];
+const AR={"paju-01":1.5,"malaysia-01":1.294,"subway-02":1.502,"tomorrow-01":0.721,"forty-02":1.502,"meta-01":1.0,"incheon-01":1.5,"wayd-01":1.768,"arko-01":0.722,"jincheon-01":1.411,"sdg-01":1.5,"gender-04":1.333,"kifa-01":1.333,"hall-03":1.333,"heo-01":1.46,"zine-01":0.75,"sign-02":1.778,"queer-02":1.042,"future-01":0.721};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const $=id=>document.getElementById(id);
 const by=k=>W.filter(w=>w.k===k);
@@ -277,7 +280,7 @@ const vis=()=>V.filter(v=>!filt||v.k===filt);
 const flat=()=>vis().flatMap(v=>by(v.k));
 function drawFilters(){$('filters').innerHTML=[['','전체']].concat(V.map(v=>[v.k,v.k])).map(f=>`<button data-k="${f[0]}" aria-pressed="${filt===f[0]}">${f[1]}</button>`).join('')}
 function drawGrid(){$('m-grid').innerHTML=vis().map(v=>`<section class="val"><div class="v-head"><h2>${v.k}</h2><strong>${v.sub}</strong><p>${v.d}</p></div>
-  <div class="thumbs">${by(v.k).map(w=>`<a class="th" href="#${w.id}"><img src="images/${w.img[0][0]}.webp" alt="" loading="lazy"><span>${esc(w.name)}<small>${esc(w.client)} · ${esc(w.when)}</small></span></a>`).join('')}</div></section>`).join('')}
+  <div class="thumbs">${by(v.k).map(w=>`<a class="th" style="--r:${AR[w.img[0][0]]||1}" href="#${w.id}"><img src="images/${w.img[0][0]}.webp" alt="" loading="lazy"><span>${esc(w.name)}<small>${esc(w.client)} · ${esc(w.when)}</small></span></a>`).join('')}</div></section>`).join('')}
 function drawList(){$('m-list').innerHTML=vis().map(v=>`<h2>${v.k} — ${v.sub}</h2>`+by(v.k).map(w=>`<a href="#${w.id}" data-img="${w.img[0][0]}">${esc(w.full)}</a>`).join('')).join('')}
 function drawGal(){const f=flat();gi=(gi+f.length)%f.length;const w=f[gi];$('gImg').src=`images/${w.img[0][0]}.webp`;$('gImg').alt=w.img[0][1];$('gLink').href='#'+w.id;$('gName').textContent=w.full;$('gMeta').textContent=w.k+' · '+w.client+' · '+w.when;$('gCnt').textContent=String(gi+1).padStart(2,'0')+' / '+String(f.length).padStart(2,'0')}
 function drawHome(){drawFilters();drawGrid();drawList();drawGal()}
