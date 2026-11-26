@@ -44,7 +44,7 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--ink);outline-offset
 .filters{display:flex;flex-wrap:wrap;gap:2px;align-items:center;padding-bottom:20px;margin-left:-8px}
 .filters button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;letter-spacing:.04em}
 .mode{display:none}.mode.on{display:block}
-.val{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);gap:clamp(20px,3vw,48px);border-top:1px solid var(--sky);padding:18px 0 clamp(48px,7vw,96px)}
+.val{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);gap:clamp(20px,3vw,48px);border-top:1px solid var(--g);padding:18px 0 clamp(48px,7vw,96px)}
 .v-head{position:sticky;top:64px;align-self:start}
 .v-head h2{font-size:clamp(20px,2vw,26px);line-height:1.1;letter-spacing:-.04em;color:var(--g);margin-bottom:8px}
 .v-head strong{display:block;margin-bottom:4px}
@@ -67,9 +67,11 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--ink);outline-offset
 .g-bar button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:6px 8px;min-height:36px}
 .g-bar button::before{content:"[ ";color:var(--dim)}.g-bar button::after{content:" ]";color:var(--dim)}
 .g-bar .cnt{justify-self:end;color:var(--soft)}
-.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid var(--sky);padding:16px 0 24px;font-size:12px}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid var(--g);padding:16px 0 24px;font-size:12px}
 .g-h{font-size:12px;color:var(--soft);padding:24px 0 8px}
 
+body.is-list{--bg:#1e8a4c;--ink:#62a8e5;--g:#62a8e5;--soft:rgba(98,168,229,.85);--dim:rgba(98,168,229,.6);background:var(--bg);color:var(--ink)}
+body.is-list .lst a{font-weight:700}
 /* pages */
 .view{display:none}.view.on{display:block}
 .page{padding-top:clamp(40px,6vw,80px);padding-bottom:clamp(64px,8vw,120px)}
@@ -90,7 +92,7 @@ a:hover b,.pager a:hover,.foot a:hover,.p-head .k:hover{text-decoration:underlin
 .pager{display:flex;justify-content:space-between;gap:16px;margin-top:clamp(48px,6vw,80px);padding-top:16px;border-top:1px solid var(--line)}
 .pager a{min-height:44px;display:flex;align-items:center}.pager a:hover{color:var(--g)}
 
-.list{border-top:1px solid var(--sky)}
+.list{border-top:1px solid var(--g)}
 .row{display:grid;grid-template-columns:72px minmax(0,2fr) minmax(0,1.4fr) 110px;gap:20px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
 .row img{width:72px;height:54px;object-fit:cover}
 .row .c,.row .y{color:var(--soft)}.row .y{text-align:right;white-space:nowrap}
@@ -98,7 +100,7 @@ a.row:hover b{color:var(--g)}
 
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(32px,5vw,80px)}
 .sec+.sec{margin-top:clamp(48px,6vw,80px)}
-.sec h2{font-size:12px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--sky)}
+.sec h2{font-size:12px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--g)}
 .rules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
 .rules b{display:block;margin-bottom:6px;font-size:18px;letter-spacing:-.04em}.rules strong{display:block;font-size:13px;margin-bottom:6px}
 .rules p{color:var(--soft)}
@@ -318,7 +320,7 @@ function route(){
   document.querySelectorAll('.view').forEach(el=>el.classList.toggle('on',el.id===v));
   if(wi>=0)detail(wi);
   if(v==='v-home'){mode=modes[h]||'grid';['grid','list','gallery'].forEach(m=>$('m-'+m).classList.toggle('on',m===mode));
-    $('introBlock').style.display=mode==='grid'?'':'none';$('homeFoot').style.display=mode==='gallery'?'none':'';$('peek').classList.remove('on')}
+    $('introBlock').style.display=mode==='grid'?'':'none';}document.body.classList.toggle('is-list',v==='v-home'&&mode==='list');if(v==='v-home'){$('homeFoot').style.display=mode==='gallery'?'none':'';$('peek').classList.remove('on')}
   document.querySelectorAll('.views a,.nav a').forEach(a=>{const t=a.getAttribute('href').slice(1);if(t===h||(t==='home'&&v==='v-home'&&!modes[h]))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   scrollTo(0,0);
 }
