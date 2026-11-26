@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>임잔잔 limjanjan</title>
+<link rel="preload" href="fonts/BookkGothic-Light.ttf" as="font" type="font/ttf" crossorigin>
+<style>
+/* VOICE: 조용하고 정확한 디자이너 개인 사이트 — 글자는 작게, 작업은 또렷하게
+   IDEA: 프로젝트 이름이 다이얼처럼 돌아가고, 오른쪽으로 작업 사진 띠가 흘러나간다 (guidopardini.com 참고)
+   PICTURE: 현재 프로젝트의 원본 사진 띠, 오른쪽 끝에서 흐려지며 화면 밖으로
+   COLOUR and TYPE: 흰 바탕 · 잉크 #111 · 회색 #bdbdbd · 로고 그린 #1e8a4c 점 하나 / Bookk Gothic
+   LAYOUT: 데스크톱은 한 화면 3단(머리·다이얼·발), 모바일은 위에서 아래로 쌓기 */
+@font-face{font-family:"Bookk Gothic";src:url(fonts/BookkGothic-Light.ttf) format("truetype");font-weight:300;font-display:swap}
+@font-face{font-family:"Bookk Gothic";src:url(fonts/BookkGothic-Bold.ttf) format("truetype");font-weight:700;font-display:swap}
+:root{color-scheme:light;--g:#1e8a4c;--sky:#62a8e5;--bg:#f4efe3;--ink:#0c5b44;--soft:rgba(12,91,68,.72);--dim:rgba(12,91,68,.4);--line:rgba(98,168,229,.6)}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 15px/1.65 "Bookk Gothic",system-ui,sans-serif;letter-spacing:-.01em;overflow-x:clip;word-break:keep-all;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+b,strong,h1,h2,h3{font-weight:700}
+h1,h2,h3,p{margin:0}
+.pad{padding:0 clamp(18px,3.2vw,44px)}
+
+/* header */
+.top{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:start;padding-top:clamp(20px,3vw,40px)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;letter-spacing:-.02em}
+.sym{width:38px;aspect-ratio:772/778;background:var(--ink);-webkit-mask:url(images/wordmark.png) center/contain no-repeat;mask:url(images/wordmark.png) center/contain no-repeat}
+.nav{display:flex;gap:4px}
+.nav a{padding:4px 8px;min-height:44px;display:flex;align-items:flex-start;color:var(--ink)}
+.nav a[aria-current=page]{text-decoration:underline;text-underline-offset:4px}
+.nav a:hover,.nav a:focus-visible{text-decoration:underline;text-underline-offset:4px;outline:none}
+.intro{justify-self:end;max-width:28em;font-size:14.5px;line-height:1.6}
+
+/* home */
+.lead{padding:clamp(56px,10vw,140px) 0 clamp(32px,5vw,56px);font-size:clamp(26px,3.6vw,50px);line-height:1.22;letter-spacing:-.04em;max-width:22em}
+.lead b{font-weight:700}
+.jump{display:flex;flex-wrap:wrap;gap:8px;padding-bottom:clamp(40px,6vw,72px)}
+.jump a{border:1px solid var(--sky);border-radius:99px;padding:8px 16px;min-height:44px;display:flex;align-items:center;gap:8px;font-weight:700}
+.jump a span{font-weight:300;color:var(--soft)}
+.jump a:hover,.jump a:focus-visible{background:var(--ink);color:var(--bg);outline:none}.jump a:hover span,.jump a:focus-visible span{color:var(--bg)}
+.val{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.4fr);gap:clamp(24px,4vw,64px);border-top:1px solid var(--sky);padding:clamp(28px,4vw,48px) 0 clamp(56px,8vw,112px);scroll-margin-top:0}
+.v-head{position:sticky;top:28px;align-self:start}
+.v-head .n{font-size:13px;color:var(--soft)}
+.v-head h2{font-size:clamp(34px,4.4vw,60px);line-height:1.05;letter-spacing:-.05em;margin:6px 0 14px}
+.v-head strong{display:block;font-size:17px;margin-bottom:8px}
+.v-head p{max-width:22em}
+.item{padding:0 0 clamp(32px,4vw,52px)}
+.item+.item{border-top:1px solid var(--line);padding-top:clamp(20px,2.4vw,28px)}
+.i-top{display:flex;justify-content:space-between;gap:16px;align-items:baseline;margin-bottom:14px}
+.i-top b{font-size:clamp(17px,1.6vw,21px);letter-spacing:-.03em}
+.i-top span{color:var(--soft);font-size:13.5px;text-align:right;flex:none}
+.strip-wrap{margin-right:calc(clamp(18px,3.2vw,44px)*-1);overflow:hidden}
+.strip{display:flex;gap:10px;height:clamp(130px,15vw,200px);overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;padding-right:18vw;-webkit-mask:linear-gradient(90deg,#000 70%,transparent 99%);mask:linear-gradient(90deg,#000 70%,transparent 99%)}
+.strip::-webkit-scrollbar{display:none}
+.strip a{flex:none;height:100%;scroll-snap-align:start}
+.strip img{height:100%;width:auto;object-fit:cover}
+.strip a:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid var(--sky);padding:20px 0 clamp(20px,3vw,40px);font-size:13.5px}
+.g-h{font-size:13px;color:var(--soft);padding:28px 0 10px}
+
+.lead,.v-head h2,.p-head h1,.big,.rules b,.brand{color:var(--g)}.sym{background:var(--g)!important}
+.jump a{color:var(--ink)}
+/* pages */
+.view{display:none}.view.on{display:block}
+.page{padding-top:clamp(56px,9vw,120px);padding-bottom:clamp(64px,8vw,120px)}
+.p-head{display:grid;grid-template-columns:1fr minmax(0,1.1fr);gap:clamp(24px,3vw,48px);align-items:start;margin-bottom:clamp(40px,6vw,80px)}
+.p-head h1{font-size:clamp(26px,3.2vw,40px);line-height:1.2;letter-spacing:-.035em}
+.p-head .k{display:block;color:var(--g);font-weight:700;margin-bottom:12px;font-size:13px}
+dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 28px;margin:0}
+dt{color:var(--soft)}dd{margin:0}
+.txt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,3vw,40px);margin-bottom:clamp(40px,6vw,72px);padding-top:20px;border-top:1px solid var(--line)}
+.txt h3{font-size:13px;margin-bottom:8px}
+.txt p{font-size:14.5px;line-height:1.7}
+.gal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.gal figure{margin:0}
+.gal .w{grid-column:1/-1}
+.gal img{width:100%;max-height:82vh;object-fit:contain;object-position:left center}
+a:hover b,.pager a:hover,.foot a:hover,.p-head .k:hover{text-decoration:underline;text-underline-offset:4px}
+.gal figcaption{font-size:12.5px;color:var(--soft);margin-top:6px}
+.pager{display:flex;justify-content:space-between;gap:16px;margin-top:clamp(48px,6vw,80px);padding-top:16px;border-top:1px solid var(--line)}
+.pager a{min-height:44px;display:flex;align-items:center}.pager a:hover{color:var(--g)}
+
+.list{border-top:1px solid var(--sky)}
+.row{display:grid;grid-template-columns:72px minmax(0,2fr) minmax(0,1.4fr) 110px;gap:20px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.row img{width:72px;height:54px;object-fit:cover}
+.row .c,.row .y{color:var(--soft)}.row .y{text-align:right;white-space:nowrap}
+a.row:hover b{color:var(--g)}
+
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(32px,5vw,80px)}
+.sec+.sec{margin-top:clamp(48px,6vw,80px)}
+.sec h2{font-size:13px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--sky)}
+.rules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.rules b{display:block;margin-bottom:6px;font-size:22px;letter-spacing:-.04em}.rules strong{display:block;font-size:16px;margin-bottom:6px}
+.rules p{color:var(--soft)}
+.big{font-size:clamp(24px,3.4vw,44px);line-height:1.25;letter-spacing:-.035em}
+.big a{border-bottom:1px solid currentColor}.big a:hover{color:var(--g)}
+
+@media (max-width:860px){
+  .top{grid-template-columns:auto 1fr}.intro{grid-column:1/-1;justify-self:start;margin-top:4px}.nav{justify-self:end}
+  .val{grid-template-columns:minmax(0,1fr)}.v-head{position:static}
+  .i-top{flex-direction:column;gap:2px}.i-top span{text-align:left}
+  .strip{height:190px;-webkit-mask:none;mask:none;padding-right:18px}
+  .p-head,.cols{grid-template-columns:minmax(0,1fr)}
+  .txt{grid-template-columns:minmax(0,1fr)}
+  .rules{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .row{grid-template-columns:64px minmax(0,1fr) auto}.row .c{display:none}.row img{width:64px;height:48px}
+}
+@media (max-width:520px){.gal{grid-template-columns:minmax(0,1fr)}.rules{grid-template-columns:minmax(0,1fr)}.nav a{padding:4px 6px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div class="view pad" id="v-home">
+  <header class="top">
+    <a class="brand" href="#home" aria-label="임잔잔 홈"><span class="sym" aria-hidden="true"></span>임잔잔</a>
+    <nav class="nav" aria-label="주 메뉴"><a href="#work">작업</a><a href="#about">소개</a><a href="#contact">연락</a></nav>
+    <p class="intro">전시·행사·교육 디자이너. 2022년부터 포스터와 키비주얼에서 시작해 책자, 홍보물, 전시 그래픽, 현장 제작물까지 한 흐름으로 맡아 왔습니다.</p>
+  </header>
+  <main>
+    <p class="lead">전시·행사·교육에 필요한 디자인을, <b>키비주얼부터 현장까지</b> 일정 안에. 작업 스무 개를 일하는 기준 네 가지로 나눠 보여드립니다.</p>
+    <nav class="jump" id="jump" aria-label="일하는 기준으로 이동"></nav>
+    <div id="vals"></div>
+  </main>
+  <footer class="foot">
+    <p>© 2026 임잔잔 limjanjan. All rights reserved.</p>
+    <p><a href="mailto:limjanjan123@gmail.com">limjanjan123@gmail.com</a> · <a href="https://www.instagram.com/limjanjan.9/">Instagram @limjanjan.9</a></p>
+  </footer>
+</div>
+
+<!-- WORK LIST -->
+<div class="view pad" id="v-work">
+  <header class="top" data-top></header>
+  <section class="page">
+    <div class="p-head"><h1>작업</h1><p class="intro" style="justify-self:start">2021–2026, 전시·행사·교육 현장의 키비주얼과 인쇄물, 전시 그래픽. 작업 스무 개를 일하는 기준별로 모았습니다.</p></div>
+    <div class="list" id="list"></div>
+  </section>
+</div>
+
+<!-- DETAIL -->
+<div class="view pad" id="v-detail">
+  <header class="top" data-top></header>
+  <article class="page" id="detail"></article>
+</div>
+
+<!-- ABOUT -->
+<div class="view pad" id="v-about">
+  <header class="top" data-top></header>
+  <section class="page">
+    <div class="p-head"><h1>소개</h1><p style="font-size:15px;line-height:1.75">2022년부터 전시·행사·교육 현장의 디자인을 해 온 5년차 디자이너입니다. 포스터와 키비주얼에서 시작해 책자, 홍보물, 전시 그래픽, 현장 제작물까지 한 흐름으로 맡습니다. 공공기관 전시·행사를 3년 반 동안 책임매니저로 운영했고, 지금은 프리랜서로 일합니다.</p></div>
+    <div class="sec"><h2>일하는 기준</h2><div class="rules" id="rules"></div></div>
+    <div class="sec cols">
+      <div><h2>만드는 것</h2><dl id="make"></dl></div>
+      <div><h2>지나온 과정</h2><dl id="path"></dl></div>
+    </div>
+    <div class="sec"><h2>함께한 곳</h2><dl id="clients"></dl></div>
+  </section>
+</div>
+
+<!-- CONTACT -->
+<div class="view pad" id="v-contact">
+  <header class="top" data-top></header>
+  <section class="page">
+    <p class="big">전시·행사·교육 디자인이 필요하다면<br><a href="mailto:limjanjan123@gmail.com">limjanjan123@gmail.com</a>으로 연락주세요.</p>
+    <dl style="margin-top:clamp(40px,5vw,64px)">
+      <dt>Email</dt><dd>limjanjan123@gmail.com</dd>
+      <dt>Instagram</dt><dd><a href="https://www.instagram.com/limjanjan.9/">@limjanjan.9</a></dd>
+      <dt>Homepage</dt><dd>limjanjan9.kr</dd>
+    </dl>
+  </section>
+</div>
+
+<script>
+{
+const V=[
+ {k:'알맞게',sub:'필요한 만큼만',d:'예산·일정·용도를 먼저 확인하고, 꼭 필요한 요소만 남깁니다.',id:'fit'},
+ {k:'산뜻하게',sub:'한눈에 읽히게',d:'언제·어디서·무엇을이 먼저 읽히도록 위계를 잡습니다.',id:'clear'},
+ {k:'넉넉하게',sub:'공백이 아닌 여백',d:'여백을 먼저 정하고, 그 안에서 지면의 짜임을 잡습니다.',id:'room'},
+ {k:'잔잔하게',sub:'적은 수단으로 큰 효과',d:'적은 색과 요소로 위계를 세워, 차분하지만 또렷하게 전합니다.',id:'calm'}
+];
+const mk=(id,name,full,k,client,when,form,share,t,img)=>({id,name,full,k,client,when,form,share,t,img});
+const W=[
+ mk('paju','파주시 건축문화제','2025 파주시 건축문화제','알맞게','파주시','2025. 06. – 10.','전시 그래픽 / 키비주얼 / 포스터','회사 프로젝트 / 70%',
+  [['과제','파주시 건축문화제(10.17–26, 금촌어울림센터). 공모부터 전시 7개, 시민참여 프로그램 12개까지 4개월간 나오는 제작물 전체를 하나의 통일된 비주얼로 구현.'],['역할','디자인팀 책임매니저. 키비주얼·포스터·리플렛·전시 그래픽·현장 제작물 디자인, 총감독·발주처와의 디자인 조율.'],['과정','공간 초안과 빠른 목업으로 대안을 시각화해 총감독을 설득. 예산 안에서 핵심 연출만 남기고, 섹션별 판넬 템플릿으로 통일감 확보.'],['결과','10일간 전시 방문 3,339명, 개막식·시상식 250명, 보도 61건. 예산·일정 안에서 개막.']],
+  [['paju-01','전시장 전경',1],['paju-03','공식 포스터'],['paju-04','파주시 건축상 공모 포스터'],['paju-05','시민참여 프로그램 공모 포스터'],['paju-02','현장 이미지'],['paju-07','전시장 목업',1],['paju-08','전시장 목업'],['paju-10','리플렛 거치대'],['paju-09','섹션별 판넬 템플릿',1]]),
+ mk('malaysia','주말레이시아 대사관 국경일 행사','주말레이시아 대한민국 대사관 국경일 행사','알맞게','주말레이시아 대한민국 대사관','2024. 09. – 10.','키비주얼 / 포스터 / 현장물','회사 프로젝트 / 60%',
+  [['과제','국경일 리셉션과 한·말 우정의 음악회(2024.10.22, 쿠알라룸푸르). 격식과 양국 우정을 함께 담아야 했고, 출력·설치는 해외 현지에서 이뤄짐.'],['역할','디자인 총괄. 키비주얼, 포스터, 초대장, 티켓, 소개서, 카탈로그, 백드롭, 엑스배너.'],['결과','Dewan Filharmonik Petronas에서 약 900명 규모로 개최.']],
+  [['malaysia-01','공연장 현장',1],['malaysia-03','포스터'],['malaysia-02','티켓'],['malaysia-06','초대장',1],['malaysia-07','프로그램북'],['malaysia-08','프로그램북 내지'],['malaysia-04','엑스배너'],['malaysia-05','엑스배너']]),
+ mk('subway','건축기획과 신문·지하철 광고','서울시 건축기획과 사업 홍보 신문 및 지하철 광고','알맞게','서울시 건축기획과','2025. 04. – 07.','홍보물 / 키비주얼 / 포스터','회사 프로젝트 / 100%',
+  [['과제','서울시의 반지하주택 관련 지원사업 5개를 우기 전에 묶어서 알리는 연계 홍보.'],['역할','키비주얼과 매체별 디자인 담당(카피는 발주처 제공).'],['과정','5개 사업에 번호와 고유 색을 정하고, 매체별 구성을 다르게 하여 정보량 조절.'],['결과','문화일보 지면광고 2회, 지하철 1~8호선 전동차 모서리형 1,500부, 액자형 1,500부, 카드뉴스는 서울주거포털 등에 게재.']],
+  [['subway-02','지하철 모서리형 광고',1],['subway-01','신문 지면광고'],['subway-03','지하철 액자형 광고'],['subway-04','카드뉴스',1]]),
+ mk('tomorrow','〈서울의 내일을 만들다〉 전시','서울도시건축전시관 기획전시 〈서울의 내일을 만들다〉','알맞게','서울도시건축전시관','2023. 12. – 2024. 03.','전시 그래픽 / 키비주얼 / 포스터','회사 프로젝트 / 80%',
+  [['과제','14개 대학 건축학과 학생 작품 40점을 하나의 전시로 묶는 그래픽.'],['역할','키비주얼·포스터·팜플렛·카드뉴스와 전시장 패널 디자인.'],['과정','패널과 전시 현장 디자인물을 키비주얼 기반으로 템플릿화하여 통일감 구성.'],['결과','UAUS와 협업해 2023. 12. 29.부터 약 두 달간 전시관 비움홀 전시.']],
+  [['tomorrow-01','포스터'],['tomorrow-02','전시장'],['forty-03','전시장 패널',1],['tomorrow-03','팜플렛 — 전시 개요'],['tomorrow-04','팜플렛 — 서문·참가자'],['tomorrow-05','팜플렛 — 작품']]),
+ mk('forty','서울특별시건축상 40주년 특별전','서울특별시건축상 40주년 특별전 운영 디자인','알맞게','서울특별시','2022. 12. – 2023. 01.','전시구성물 / 현장제작물','회사 프로젝트 / 70%',
+  [['과제','건축상 40년 대상 수상작으로 서울 건축 역사를 조망하는 특별전 운영 디자인.'],['역할','전시 구성물(엽서전시, 지도, 패널) 디자인, 현장 제작물(책자) 디자인.'],['과정','40년 치 자료를 먼저 정리하고, 엽서 벽면·지도 벽면·소개 패널로 구성.'],['결과','서울건축문화제의 한 섹션에서 출발해 2022년 12월 단독 전시로 개막.']],
+  [['forty-02','지도 벽면과 엽서 전시',1],['forty-01','전시장 전경',1]]),
+ mk('meta','인천 메타버스 기후정의 시민선언','인천 메타버스 기후정의 시민선언','알맞게','기후위기인천비상행동','2021. 10.','홍보물','활동 프로젝트 / 100%',
+  [['과제','게더타운에서 연 온라인 집회 ‘기후정의 시민선언’의 홍보.'],['역할','홍보물과 메타버스 공간 안 구조물 디자인.'],['과정','온라인 집회 형식에 맞춰 모집 홍보물과 공간 구조물을 함께 디자인.'],['결과','2021년 10월 22일 게더타운에서 시민선언 진행.']],
+  [['meta-01','홍보 포스터'],['meta-04','메타버스 공간'],['meta-02','참여 안내'],['meta-03','참여 안내']]),
+
+ mk('incheon','인천콘텐츠코리아랩 창작프로그램','2022–2025 인천콘텐츠코리아랩 창작프로그램','산뜻하게','인천테크노파크','2022. 05. – 2025. 11.','키비주얼 / 포스터 / 웹배너 / 현장물','회사 프로젝트 / 60%',
+  [['과제','매년 20회 넘는 강연을 회차마다 다른 모습으로, 그러면서도 하나의 사업으로 읽히게.'],['역할','디자인팀 책임매니저 · 운영 디자인 총괄. 키비주얼, 회차별 포스터·썸네일·상세페이지, 현장 제작물.'],['결과','4년간 공개강연 86회, 누적 참여 20,000명 이상.']],
+  [['incheon-01','강연 현장',1],['incheon-06','회차 포스터 — 마이리틀콘텐츠'],['incheon-07','회차 포스터 — 콘텐츠 크리에이티브 콘서트'],['incheon-08','유튜브 썸네일',1],['incheon-02','현장'],['incheon-03','단체 사진'],['incheon-05','인스타그램 피드'],['incheon-04','무대 백월']]),
+ mk('wayd','Wayd. 회사 소개서 리뉴얼','Wayd. 회사 소개서 리뉴얼','산뜻하게','Wayd. (사내)','2024. 12.','슬라이드','회사 프로젝트 / 80%',
+  [['과제','창립 7~8년 차에 낡은 회사 소개서를 리브랜딩과 함께 새로 만드는 작업.'],['역할','기획, 디자인 담당(책임매니저). 구성을 직접 기획 후 대표·본부장의 컨펌.'],['과정','실적을 4개 섹션으로 다시 분류하고, 프로젝트마다 템플릿화.'],['결과','한 달 만에 101쪽 완성. 2025년부터 제안·입찰에 제출, 회사 홈페이지 게시.']],
+  [['wayd-01','표지',1],['wayd-02','회사 소개'],['wayd-06','디자인 개요'],['wayd-03','SPACE — 서울도시건축전시관'],['wayd-04','SQUARE — 서울도시건축비엔날레'],['wayd-05','STUDIO — 인천CKL 창작프로그램',1]]),
+ mk('arko','예술경영아카데미 특강 홍보물','예술경영아카데미 특강 홍보물','산뜻하게','예술경영지원센터','2022. 05. – 12.','홍보물 / 키비주얼','회사 프로젝트 / 100%',
+  [['과제','틀에 내용만 바꿔 넣어 주제가 드러나지 않던 특강 홍보물의 개선.'],['역할','키비주얼·포스터·엑스배너·현수막 디자인.'],['과정','기술 관련 오브제를 콜라주해 특강 주제가 그림만으로 읽히게 구성.'],['결과','새 키비주얼을 포스터·배너·현수막으로 전개해 특강 현장에 적용.']],
+  [['arko-01','포스터'],['arko-02','엑스배너'],['sdg-04','카드뉴스',1],['arko-03','웹 상세페이지']]),
+ mk('jincheon','생거진천 영재페스티벌 리플렛','2023 생거진천 창의융합 영재페스티벌 리플렛','산뜻하게','진천교육지원청·진천군','2023. 11.','리플렛','프리랜서 작업',
+  [['과제','2023 생거진천 창의융합 영재페스티벌(11. 4.)의 안내 리플렛.'],['역할','리플렛 디자인.'],['과정','발주처 구성안을 따르면서 정보 순서와 위계를 다시 잡고 지도를 정리.'],['결과','프로그램 안내와 부스 지도를 한 장에 담아 납품.']],
+  [['jincheon-01','리플렛 바깥면',1],['jincheon-02','리플렛 안쪽면',1]]),
+ mk('sdg','서울도시건축전시관 홍보 디자인','서울도시건축전시관 홍보 디자인','산뜻하게','서울도시건축전시관','2023. 01. – 2024. 12.','홍보물','회사 프로젝트 / 90%',
+  [['과제','전시관 운영 대행 2년간 이어진 전시 14건의 홍보·운영 디자인.'],['역할','전시 홍보 콘텐츠, 건축 관련 정기 카드뉴스, 전시관 안내 콘텐츠.'],['과정','주제별 템플릿(책방은 책, 인터뷰는 따옴표)을 두고 레이아웃을 제안.'],['결과','전시관 누적 관람객 2023년 136,592명, 2024년 308,499명.']],
+  [['sdg-01','뉴스레터와 카드뉴스',1],['sdg-02','인스타그램 게시물'],['sdg-03','인스타그램 게시물']]),
+ mk('gender','젠더시네마 전국 순회 상영회','젠더시네마 전국 순회 영화 상영회','산뜻하게','정의당 성소수자위원회','2023. 04. – 05.','포스터 / 현장제작물','활동 프로젝트 / 100%',
+  [['과제','IDAHOBIT 기념, 5개 지역을 도는 단편영화 상영회의 운영 디자인.'],['역할','웹자보, 카드뉴스, 지역별 엑스배너·현수막, 스크린 화면 디자인.'],['과정','키비주얼 하나에 지역명 배지를 붙이고, 일시·장소·게스트만 바꿔 전개.'],['결과','대전·대구·인천·부산·충남 5개 지역 상영에 맞춰 제작물 납품.']],
+  [['gender-04','상영회 현장',1],['gender-01','웹자보'],['gender-03','스크린 화면'],['gender-02','현장 접수대']]),
+
+ mk('kifa','한국여성건축가협회 작품집','한국여성건축가협회 기획전 작품집 · 미래비전 2050 보고서','넉넉하게','한국여성건축가협회','2025. 04.','책자 (작품집 및 보고서)','회사 프로젝트 / 100%',
+  [['과제','2025 여성건축가 기획전(5.20–25, DDP). 건축가마다 형식이 다른 작품 원고를 작품집 한 권으로, 포럼 논의를 보고서로.'],['역할','디자인 전체 총괄 및 제작(1인). 작품집 248쪽, 미래비전 2050 보고서 133쪽 편집디자인과 발주.'],['결과','열흘 안에 두 권을 인쇄·납품, 전시장에 비치.']],
+  [['kifa-01','작품집',1],['kifa-02','전시장의 작품집',1],['kifa-04','미래비전 2050 보고서 표지'],['kifa-05','국제교류전 간지'],['kifa-06','작품 펼침면'],['kifa-07','작품 펼침면'],['kifa-08','작품 펼침면'],['kifa-09','작품 펼침면'],['kifa-10','보고서 본문',1]]),
+ mk('hall','건축상 〈명예의 전당〉 전시','서울특별시 건축상 〈명예의 전당〉 전시','넉넉하게','서울도시건축전시관','2024. 04. – 12.','전시 그래픽 / 키비주얼 / 포스터','회사 프로젝트 / 100%',
+  [['과제','1회(1979)부터 41회(2023)까지의 건축상 수상작을 한 벽면에 담는 전시.'],['역할','키비주얼·포스터, 전시 사이니지와 벽면 구성 디자인.'],['과정','회차·연도를 기준선 위에, 수상작 사진과 이름은 아래에 두 줄 연대기로 배열.'],['결과','2024년 4월부터 연말까지 서울도시건축전시관 갤러리2에서 전시.']],
+  [['hall-03','전시장 전경',1],['hall-02','전시장'],['hall-01','연대기 벽면 그래픽',1]]),
+ mk('heo','〈허은성 전공영어〉 교재','〈허은성 전공영어〉 교재 및 〈월간 허은성〉','넉넉하게','KG에듀원 쌤Plus','2025. 01. – 2026. 10.','교재','프리랜서 작업',
+  [['과제','분량 많은 임용 수험서 4종과, 매달 정해진 날에 나오는 월간지의 제작.'],['역할','교재·월간지 내지 편집디자인.'],['과정','템플릿을 미리 꼼꼼히 컨펌받고, 매달 원고를 템플릿에 맞춰 제작. 188×257mm, 무선제본.'],['결과','교재 4종 6권 1,399쪽, 월간지 10개월 연속 발행(10권 1,213쪽).']],
+  [['heo-01','영미문학'],['heo-02','영어교육론'],['heo-03','영어학 1'],['heo-04','영어학 2'],['heo-05','월간 허은성'],['heo-06','일반영어']]),
+
+ mk('zine','서점 구술채록 zine','서점 생존 · 기억 구술채록: 발표 자료 및 zine','잔잔하게','서울기록원 기록활동가 팀 〈페이지〉','2026. 09. – 10.','PPT / Zine','팀 프로젝트 / 60%',
+  [['과제','은평구 지역서점(불광문고·광명문고)의 생존을 구술로 기록한 〈서점은 어떻게 기억되고 살아남는가?〉. 4건의 구술과 자료를 발표장 밖에서도 읽히는 형태로.'],['역할','팀 내 양식화·시각화 담당. 발표자료 62쪽 설계·디자인, zine 2종(요약본, 워크북) 디자인.'],['결과','zine 200부 모두 소진.']],
+  [['zine-01','서울기록페어 부스'],['zine-04','발표자료 표지'],['zine-02','zine 기록면',1],['zine-03','zine 참여면',1],['zine-05','발표자료 — 팀 소개'],['zine-06','발표자료 — 타임라인']]),
+ mk('sign','서울도시건축전시관 사이니지','서울도시건축전시관 시설 사이니지 개선','잔잔하게','서울도시건축전시관','2023. 01. – 03.','사이니지','회사 프로젝트 / 100%',
+  [['과제','브랜드 가이드가 없는 5개 층 전시관의 층별·비상 안내 사인 정비.'],['역할','사인 4종 10개의 디자인과 제작 담당.'],['과정','골드·그레이 두 색과 건물의 직선 모티프, 산세리프로 표기를 통일.'],['결과','층별 안내판 5, 비상 배치도 3, 전체 층 안내도 1, 현판 1 제작 완료.']],
+  [['sign-02','엘리베이터 안내판 설치',1],['sign-01','비상계단 안내판 설치',1],['sign-03','엘리베이터 안내판 시안'],['sign-04','엘리베이터 안내판 시안'],['sign-05','층별 안내도 — 지하 2층'],['sign-06','층별 안내도 — 지하 3층']]),
+ mk('queer','퀴어동네 노동법 안내서','퀴어노동법률지원네트워크 노동법 안내서','잔잔하게','퀴어노동법률지원네트워크','2023. 11.','책자','프리랜서 작업',
+  [['과제','단체의 첫 책자. 채용부터 해고·차별까지의 법률 내용을 읽기 쉽게 정리.'],['역할','표지·내지 편집디자인, 일러스트와 도표 제작.'],['과정','보라 한 색의 농담으로 위계를 잡고, 장별 색인 탭으로 찾기 쉽게 구성. 182×257mm, 무선제본.'],['결과','초판 500부 인쇄. 2024 인천퀴어문화축제에서 100부 이상 배포.']],
+  [['queer-02','표지',1],['queer-03','1장 간지'],['queer-04','본문 — 그래프·도식'],['queer-05','본문 — 절차 도식'],['queer-06','본문 — 표']]),
+ mk('future','〈미래를 짓는, 서울〉 전시','〈미래를 짓는, 서울〉 전시 운영디자인','잔잔하게','서울도시건축전시관','2024. 04. – 06.','전시 그래픽 / 키비주얼 / 포스터','회사 프로젝트 / 100%',
+  [['과제','한옥과 목조건축, 지속가능한 재료를 다룬 2024 기획전의 그래픽.'],['역할','키비주얼·포스터, 카드뉴스, 전시장 패널·캡션 디자인.'],['과정','한옥의 외형에서 형태를 가져오고, 현재의 사진과 과거의 스케치를 반씩 섞음.'],['결과','2024. 4. 19. – 5. 29. 갤러리3·비움홀에서 전시.']],
+  [['future-01','포스터'],['future-02','전시장 전경']])
+];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=id=>document.getElementById(id);
+const by=k=>W.filter(w=>w.k===k);
+
+const head=document.querySelector('#v-home .top').innerHTML;
+document.querySelectorAll('[data-top]').forEach(h=>h.innerHTML=head);
+
+/* home: four values */
+$('jump').innerHTML=V.map(v=>`<a href="#${v.id}">${v.k}<span>${by(v.k).length}</span></a>`).join('');
+$('vals').innerHTML=V.map((v,vi)=>`<section class="val" id="${v.id}">
+  <div class="v-head"><span class="n">기준 ${vi+1} / 4 · 작업 ${by(v.k).length}개</span><h2>${v.k}</h2><strong>${v.sub}</strong><p>${v.d}</p></div>
+  <div>${by(v.k).map((w,wi)=>`<div class="item">
+    <a class="i-top" href="#${w.id}"><b>${esc(w.full)}</b><span>${esc(w.client)} · ${esc(w.when)}</span></a>
+    <div class="strip-wrap"><div class="strip">${w.img.slice(0,6).map((m,j)=>`<a href="#${w.id}" aria-label="${esc(w.name)} — ${esc(m[1])}"><img src="images/${m[0]}.webp" alt="${esc(m[1])}" ${vi||wi||j>2?'loading="lazy"':''}></a>`).join('')}</div></div>
+  </div>`).join('')}</div>
+</section>`).join('');
+
+/* list */
+$('list').innerHTML=V.map(v=>`<div class="g-h">${v.k} — ${v.sub}</div>`+by(v.k).map(w=>`<a class="row" href="#${w.id}"><img src="images/${w.img[0][0]}.webp" alt="" loading="lazy"><b>${esc(w.full)}</b><span class="c">${esc(w.client)}</span><span class="y">${esc(w.when)}</span></a>`).join('')).join('');
+
+/* detail */
+function detail(i){
+  const w=W[i],p=W[(i-1+W.length)%W.length],n=W[(i+1)%W.length],v=V.find(x=>x.k===w.k);
+  const meta=[['발주',w.client],['시기',w.when],['형식',w.form],['기여',w.share]];
+  $('detail').innerHTML=`
+  <div class="p-head"><div><a class="k" href="#${v.id}">${v.k} — ${v.sub}</a><h1>${esc(w.full)}</h1></div>
+  <dl>${meta.map(m=>`<dt>${m[0]}</dt><dd>${esc(m[1])}</dd>`).join('')}</dl></div>
+  <div class="txt">${w.t.map(t=>`<div><h3>${esc(t[0])}</h3><p>${esc(t[1])}</p></div>`).join('')}</div>
+  <div class="gal">${w.img.map((m,j)=>`<figure class="${m[2]||w.img.length===1?'w':''}"><img src="images/${m[0]}.webp" alt="${esc(m[1])}" ${j>1?'loading="lazy"':''}><figcaption>${esc(m[1])}</figcaption></figure>`).join('')}</div>
+  <div class="pager"><a href="#${p.id}">← ${esc(p.name)}</a><a href="#work">전체 작업</a><a href="#${n.id}">${esc(n.name)} →</a></div>`;
+}
+
+/* about */
+$('rules').innerHTML=V.map(r=>`<div><b>${r.k}</b><strong>${r.sub}</strong><p>${r.d}</p></div>`).join('');
+const dl=a=>a.map(r=>`<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join('');
+$('make').innerHTML=dl([['키비주얼','포스터를 비롯한 키비주얼'],['책자','리플렛, 카탈로그, 브로슈어, 도록, 백서'],['홍보물','카드뉴스, 상세페이지, 웹 DM, 뉴스레터'],['현장','현수막, 배너, POP, 피켓'],['전시','판넬, 사이니지, 시트커팅']]);
+$('path').innerHTML=dl([['2025. 12. –','프리랜서'],['2022. 05. – 2025. 11.','Wayd. 디자인팀 책임매니저'],['2021. 04. – 2022. 04.','디자인나스 광고편집 과정 수료'],['2020. 02.','한국외국어대학교 노어과 · 문화콘텐츠학 졸업'],['자격','컴퓨터그래픽스운용기능사']]);
+$('clients').innerHTML=dl([['지자체·공공','서울특별시, 파주시, 강남구, 인천광역시, 경기도, 서울도시건축전시관, 국립아시아문화전당 외'],['재단·협회·학교','현대차정몽구재단, KDB나눔재단, KTOA, 부천국제애니메이션페스티벌, 한국여성건축가협회, 인하대학교'],['기업','하나투어, KG에듀원, 아스트라제네카, 프레세니어스카비코리아, 동화청과, 나이키 외'],['시민사회 · 재외공관','젠더정치연구소 여세연, 퀴어노동법률지원네트워크, 주말레이시아·주싱가포르 대한민국 대사관']]);
+
+/* router */
+const pages={home:'v-home',work:'v-work',about:'v-about',contact:'v-contact'};
+function route(){
+  const h=location.hash.slice(1)||'home';const wi=W.findIndex(w=>w.id===h);const val=V.find(v=>v.id===h);
+  const v=wi>=0?'v-detail':(val?'v-home':(pages[h]||'v-home'));
+  document.querySelectorAll('.view').forEach(el=>el.classList.toggle('on',el.id===v));
+  if(wi>=0)detail(wi);
+  document.querySelectorAll('.nav a').forEach(a=>{const t=a.getAttribute('href').slice(1);if(t===h||(wi>=0&&t==='work'))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  if(val){const el=$(val.id);if(el)el.scrollIntoView()}else scrollTo(0,0);
+}
+addEventListener('hashchange',route);route();
+}
+
+</script>
+</body>
+</html>
