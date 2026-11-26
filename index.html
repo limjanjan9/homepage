@@ -54,7 +54,7 @@ img{-webkit-text-stroke:0}
 .th span{display:block;margin-top:8px;line-height:1.4}
 @media (max-width:520px){.thumbs{--h:150px}}
 .th small{display:block;color:var(--soft);font-size:11.5px}
-.lst{text-align:center;padding:clamp(24px,4vw,56px) 0 clamp(64px,8vw,120px)}
+.lst{text-align:center;padding:clamp(8px,2vw,24px) 0 clamp(64px,8vw,120px)}
 .lst h2{font-size:12px;font-weight:300;color:var(--soft);padding:26px 0 8px;letter-spacing:.04em}
 .lst a{display:block;padding:3px 0;font-size:14px}
 .lst a:hover{color:var(--g);font-weight:700}
@@ -74,7 +74,7 @@ img{-webkit-text-stroke:0}
 
 body.is-list{--bg:#161817;--ink:#62a8e5;--g:#62a8e5;--soft:rgba(98,168,229,.85);--dim:rgba(98,168,229,.6);background:var(--bg);color:var(--ink);--line-g:#62a8e5;-webkit-text-stroke:0}
 body.is-list .lst a{font-weight:300}
-body.is-list b,body.is-list .brand{font-weight:300}
+body.is-list .brand,body.is-list .lst b{font-weight:300}
 body.is-list .lst h2{border-top:1px solid #62a8e5;max-width:520px;margin:18px auto 0}
 body.is-list .lst h2:first-child{margin-top:0}
 /* pages */
@@ -133,7 +133,7 @@ a.row:hover b{color:var(--g)}
 <div class="view pad" id="v-home">
   <header class="top">
     <a class="brand" href="#home" aria-label="임잔잔 홈"><span class="sym" aria-hidden="true"></span>임잔잔</a>
-    <nav class="views" aria-label="보기 방식"><a href="#home">그리드</a><a href="#list">목록</a><a href="#gallery">갤러리</a></nav>
+    <nav class="views" aria-label="보기 방식"><a href="#home">목록</a><a href="#grid">그리드</a><a href="#gallery">갤러리</a></nav>
     <nav class="nav" aria-label="주 메뉴"><a href="#about">소개</a><a href="#contact">연락</a></nav>
   </header>
   <main>
@@ -319,15 +319,15 @@ $('path').innerHTML=dl([['2025. 12. –','프리랜서'],['2022. 05. – 2025. 1
 $('clients').innerHTML=dl([['지자체·공공','서울특별시, 파주시, 강남구, 인천광역시, 경기도, 서울도시건축전시관, 국립아시아문화전당 외'],['재단·협회·학교','현대차정몽구재단, KDB나눔재단, KTOA, 부천국제애니메이션페스티벌, 한국여성건축가협회, 인하대학교'],['기업','하나투어, KG에듀원, 아스트라제네카, 프레세니어스카비코리아, 동화청과, 나이키 외'],['시민사회 · 재외공관','젠더정치연구소 여세연, 퀴어노동법률지원네트워크, 주말레이시아·주싱가포르 대한민국 대사관']]);
 
 /* router */
-const pages={work:'v-work',about:'v-about',contact:'v-contact'};const modes={home:'grid',list:'list',gallery:'gallery'};
+const pages={work:'v-work',about:'v-about',contact:'v-contact'};const modes={home:'list',list:'list',grid:'grid',gallery:'gallery'};
 function route(){
   const h=location.hash.slice(1)||'home';const wi=W.findIndex(w=>w.id===h);
   const v=wi>=0?'v-detail':(pages[h]||'v-home');
   document.querySelectorAll('.view').forEach(el=>el.classList.toggle('on',el.id===v));
   if(wi>=0)detail(wi);
-  if(v==='v-home'){mode=modes[h]||'grid';['grid','list','gallery'].forEach(m=>$('m-'+m).classList.toggle('on',m===mode));
-    $('introBlock').style.display=mode==='grid'?'':'none';}document.body.classList.toggle('is-list',v==='v-home'&&mode==='list');if(v==='v-home'){$('homeFoot').style.display=mode==='gallery'?'none':'';$('peek').classList.remove('on')}
-  document.querySelectorAll('.views a,.nav a').forEach(a=>{const t=a.getAttribute('href').slice(1);if(t===h||(t==='home'&&v==='v-home'&&!modes[h]))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  if(v==='v-home'){mode=modes[h]||'list';['grid','list','gallery'].forEach(m=>$('m-'+m).classList.toggle('on',m===mode));
+    $('introBlock').style.display=mode==='gallery'?'none':'';}document.body.classList.toggle('is-list',v==='v-home'&&mode==='list');if(v==='v-home'){$('homeFoot').style.display=mode==='gallery'?'none':'';$('peek').classList.remove('on')}
+  document.querySelectorAll('.views a,.nav a').forEach(a=>{const t=a.getAttribute('href').slice(1);if(t===h||(t==='home'&&v==='v-home'&&(h==='list'||!modes[h])))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   scrollTo(0,0);
 }
 addEventListener('hashchange',route);route();
