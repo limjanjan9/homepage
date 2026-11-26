@@ -29,6 +29,9 @@ h1,h2,h3,p{margin:0}
 .sym{width:26px;aspect-ratio:772/778;background:var(--g);-webkit-mask:url(images/wordmark.png) center/contain no-repeat;mask:url(images/wordmark.png) center/contain no-repeat}
 .views,.nav{display:flex;gap:2px}
 .nav{justify-self:end}
+.nav a.dl{border:1px solid currentColor;border-radius:99px;padding:4px 12px;min-height:32px;margin-left:6px;align-self:center}
+.nav a.dl:hover{background:var(--ink);color:var(--bg);text-decoration:none}
+@media (max-width:520px){.nav a.dl{padding:3px 10px;margin-left:2px}}
 .views a,.nav a,.filters button{padding:6px 8px;min-height:36px;display:flex;align-items:center;white-space:nowrap}
 .views a::before,.filters button::before{content:"[ ";color:var(--dim)}.views a::after,.filters button::after{content:" ]";color:var(--dim)}
 [aria-current=page],[aria-pressed=true]{text-decoration:underline;text-underline-offset:4px}
@@ -143,7 +146,7 @@ a.row:hover b{color:var(--g)}
   <header class="top">
     <a class="brand" href="#home" aria-label="임잔잔 홈"><span class="sym" aria-hidden="true"></span>임잔잔</a>
     <nav class="views" aria-label="보기 방식"><a href="#home">목록</a><a href="#grid">그리드</a><a href="#gallery">갤러리</a></nav>
-    <nav class="nav" aria-label="주 메뉴"><a href="#about">소개</a><a href="#contact">연락</a></nav>
+    <nav class="nav" aria-label="주 메뉴"><a href="#about">소개</a><a href="#contact">연락</a><a class="dl" href="limjanjan_portfolio_2026.pdf" download="임잔잔_포트폴리오_2026.pdf" aria-label="포트폴리오 PDF 내려받기 (11MB)">포트폴리오 PDF ↓</a></nav>
   </header>
   <main>
     <div id="introBlock">
